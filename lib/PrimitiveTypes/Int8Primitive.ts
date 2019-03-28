@@ -6,8 +6,8 @@ export class Int8Primitive {
         public Value: number
     ) { };
 
-    public static read(reader: BufferReader): Int8Primitive {
-        return new Int8Primitive(reader.readInt8());
+    public static read(buffer: BufferReader): Int8Primitive {
+        return new Int8Primitive(buffer.readInt8());
     }
 
 }

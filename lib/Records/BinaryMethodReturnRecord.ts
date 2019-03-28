@@ -15,23 +15,23 @@ export class BinaryMethodReturnRecord {
         public Args: ArrayOfValueWithCode | null
     ) { };
 
-    public static read(reader: BufferReader): BinaryMethodReturnRecord {
+    public static read(buffer: BufferReader): BinaryMethodReturnRecord {
 
-        const messageEnum = MessageFlagsEnumeration.read(reader);
+        const messageEnum = MessageFlagsEnumeration.read(buffer);
 
         let returnValue: ValueWithCode | null = null;
         if(messageEnum.Value & MessageFlags.ReturnValueInline) {
-            returnValue = ValueWithCode.read(reader);
+            returnValue = ValueWithCode.read(buffer);
         }
 
         let callContext: StringValueWithCode | null = null;
         if(messageEnum.Value & MessageFlags.ContextInline) {
-            callContext = StringValueWithCode.read(reader);
+            callContext = StringValueWithCode.read(buffer);
         }
 
         let args: ArrayOfValueWithCode | null = null;
         if(messageEnum.Value & MessageFlags.ArgsInline) {
-            args = ArrayOfValueWithCode.read(reader);
+            args = ArrayOfValueWithCode.read(buffer);
         }
 
         return new BinaryMethodReturnRecord(messageEnum, returnValue, callContext, args);

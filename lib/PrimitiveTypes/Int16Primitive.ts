@@ -6,8 +6,8 @@ export class Int16Primitive {
         public Value: number
     ) { };
 
-    public static read(reader: BufferReader): Int16Primitive {
-        return new Int16Primitive(reader.readInt16LE());
+    public static read(buffer: BufferReader): Int16Primitive {
+        return new Int16Primitive(buffer.readInt16LE());
     }
     
 }

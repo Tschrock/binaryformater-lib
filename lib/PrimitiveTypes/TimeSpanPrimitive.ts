@@ -7,8 +7,8 @@ export class TimeSpanPrimitive {
         public Value: JSBI
     ) { };
 
-    public static read(reader: BufferReader): TimeSpanPrimitive {
-        return new TimeSpanPrimitive(reader.readUInt64LE());
+    public static read(buffer: BufferReader): TimeSpanPrimitive {
+        return new TimeSpanPrimitive(buffer.readUInt64LE());
     }
     
 }

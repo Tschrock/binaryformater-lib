@@ -9,7 +9,7 @@ export class LengthPrefixedString {
         public Value: string
     ) { }
 
-    public static read(reader: BufferReader): LengthPrefixedString {
+    public static read(buffer: BufferReader): LengthPrefixedString {
 
         let lengthValue = 0;
 
@@ -17,7 +17,7 @@ export class LengthPrefixedString {
         for(let i = 0; i < 5; i++) {
 
             // Read the next Byte off the buffer
-            var currentByte = reader.readUInt8();
+            var currentByte = buffer.readUInt8();
 
             // The first 7 bits are the value to be added to our length
             var currentByteValue = currentByte & LENGTH_BYTEMASK;
@@ -37,7 +37,7 @@ export class LengthPrefixedString {
         }
 
         return new LengthPrefixedString(
-            reader.readString('utf8', lengthValue)
+            buffer.readString('utf8', lengthValue)
         );
 
     }

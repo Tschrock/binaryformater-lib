@@ -6,8 +6,8 @@ export class UInt16Primitive {
         public Value: number
     ) { };
 
-    public static read(reader: BufferReader): UInt16Primitive {
-        return new UInt16Primitive(reader.readUInt16LE());
+    public static read(buffer: BufferReader): UInt16Primitive {
+        return new UInt16Primitive(buffer.readUInt16LE());
     }
     
 }

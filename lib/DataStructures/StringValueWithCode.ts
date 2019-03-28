@@ -9,9 +9,9 @@ export class StringValueWithCode {
         public Value: LengthPrefixedString
     ) { };
 
-    public static read(reader: BufferReader): StringValueWithCode {
+    public static read(buffer: BufferReader): StringValueWithCode {
 
-        return new StringValueWithCode(LengthPrefixedString.read(reader));
+        return new StringValueWithCode(LengthPrefixedString.read(buffer));
 
     }
 }

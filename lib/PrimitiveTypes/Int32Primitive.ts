@@ -6,8 +6,8 @@ export class Int32Primitive {
         public Value: number
     ) { };
 
-    public static read(reader: BufferReader): Int32Primitive {
-        return new Int32Primitive(reader.readInt32LE());
+    public static read(buffer: BufferReader): Int32Primitive {
+        return new Int32Primitive(buffer.readInt32LE());
     }
     
 }

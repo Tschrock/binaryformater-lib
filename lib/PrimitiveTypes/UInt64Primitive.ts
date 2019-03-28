@@ -7,8 +7,8 @@ export class UInt64Primitive {
         public Value: JSBI
     ) { };
 
-    public static read(reader: BufferReader): UInt64Primitive {
-        return new UInt64Primitive(reader.readUInt64LE());
+    public static read(buffer: BufferReader): UInt64Primitive {
+        return new UInt64Primitive(buffer.readUInt64LE());
     }
     
 }

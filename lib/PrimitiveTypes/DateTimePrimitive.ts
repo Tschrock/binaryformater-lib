@@ -14,9 +14,9 @@ export class DateTimePrimitive {
         public Kind: TimeZoneKind
     ) { };
 
-    public static read(reader: BufferReader): DateTimePrimitive {
+    public static read(buffer: BufferReader): DateTimePrimitive {
 
-        const fullValue = reader.readUInt64LE();
+        const fullValue = buffer.readUInt64LE();
 
         return new DateTimePrimitive(
             JSBI.signedRightShift(fullValue, JSBI.BigInt(2)),

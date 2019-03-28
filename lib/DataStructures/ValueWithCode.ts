@@ -8,10 +8,10 @@ export class ValueWithCode {
         public Value: IPrimitiveType
     ) { };
 
-    public static read(reader: BufferReader): ValueWithCode {
+    public static read(buffer: BufferReader): ValueWithCode {
 
-        const primitiveTypeEnum = PrimitiveTypeEnumeration.read(reader);
-        const value = PrimitiveTypeEnumeration.readPrimitiveForType(reader, primitiveTypeEnum.Value);
+        const primitiveTypeEnum = PrimitiveTypeEnumeration.read(buffer);
+        const value = PrimitiveTypeEnumeration.readPrimitiveForType(buffer, primitiveTypeEnum.Value);
 
         return new ValueWithCode(primitiveTypeEnum, value);
 

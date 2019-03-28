@@ -15,20 +15,20 @@ export class BinaryMethodCallRecord {
         public Args: ArrayOfValueWithCode | null
     ) { };
 
-    public static read(reader: BufferReader): BinaryMethodCallRecord {
+    public static read(buffer: BufferReader): BinaryMethodCallRecord {
 
-        const messageEnum = MessageFlagsEnumeration.read(reader);
-        const methodName = StringValueWithCode.read(reader);
-        const typeName = StringValueWithCode.read(reader);
+        const messageEnum = MessageFlagsEnumeration.read(buffer);
+        const methodName = StringValueWithCode.read(buffer);
+        const typeName = StringValueWithCode.read(buffer);
 
         let callContext: StringValueWithCode | null = null;
         if(messageEnum.Value & MessageFlags.ContextInline) {
-            callContext = StringValueWithCode.read(reader);
+            callContext = StringValueWithCode.read(buffer);
         }
 
         let args: ArrayOfValueWithCode | null = null;
         if(messageEnum.Value & MessageFlags.ArgsInline) {
-            callContext = StringValueWithCode.read(reader);
+            callContext = StringValueWithCode.read(buffer);
         }
 
         return new BinaryMethodCallRecord(messageEnum, methodName, typeName, callContext, args);

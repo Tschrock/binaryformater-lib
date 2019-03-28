@@ -10,10 +10,10 @@ export class ArrayOfValueWithCode {
         public Values: Sequence<ValueWithCode>
     ) { };
 
-    public static read(reader: BufferReader): ArrayOfValueWithCode {
+    public static read(buffer: BufferReader): ArrayOfValueWithCode {
 
-        const length = Int32Primitive.read(reader);
-        const values = Sequence.read(reader, ValueWithCode.read, length.Value);
+        const length = Int32Primitive.read(buffer);
+        const values = Sequence.read(buffer, ValueWithCode.read, length.Value);
 
         return new ArrayOfValueWithCode(length, values);
 

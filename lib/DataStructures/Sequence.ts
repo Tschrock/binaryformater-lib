@@ -6,11 +6,11 @@ export class Sequence<T> {
         public Values: T[]
     ) { };
 
-    public static read<T>(reader: BufferReader, valueReader: (reader: BufferReader) => T, count: number): Sequence<T> {
+    public static read<T>(buffer: BufferReader, valueReader: (buffer: BufferReader) => T, count: number): Sequence<T> {
 
         let values: T[] = [];
         for (let i = 0; i < count; ++i) {
-            values.push(valueReader(reader));
+            values.push(valueReader(buffer));
         }
 
         return new Sequence(values);

@@ -12,12 +12,12 @@ export class ClassInfo {
         public MemberNames: Sequence<LengthPrefixedString>
     ) { }
 
-    public static read(reader: BufferReader): ClassInfo {
+    public static read(buffer: BufferReader): ClassInfo {
 
-        const id = Int32Primitive.read(reader);
-        const name = LengthPrefixedString.read(reader);
-        const memberCount = Int32Primitive.read(reader);
-        const memberNames = Sequence.read(reader, LengthPrefixedString.read, memberCount.Value);
+        const id = Int32Primitive.read(buffer);
+        const name = LengthPrefixedString.read(buffer);
+        const memberCount = Int32Primitive.read(buffer);
+        const memberNames = Sequence.read(buffer, LengthPrefixedString.read, memberCount.Value);
 
         return new ClassInfo(id, name, memberCount, memberNames);
 

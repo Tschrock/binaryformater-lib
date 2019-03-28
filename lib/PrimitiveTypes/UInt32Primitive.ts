@@ -6,8 +6,8 @@ export class UInt32Primitive {
         public Value: number
     ) { };
 
-    public static read(reader: BufferReader): UInt32Primitive {
-        return new UInt32Primitive(reader.readUInt32LE());
+    public static read(buffer: BufferReader): UInt32Primitive {
+        return new UInt32Primitive(buffer.readUInt32LE());
     }
     
 }
