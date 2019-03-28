@@ -1,3 +1,4 @@
+import JSBI from 'jsbi';
 
 type FilteredKeys<T, U> = { [P in keyof T]: T[P] extends U ? P : never }[keyof T];
 type BufferFiltered = { [Q in FilteredKeys<Buffer, (index: number) => number>]: Buffer[Q] };
@@ -16,7 +17,7 @@ export class BufferReader {
     }
 
     readInt8() {
-        return this.doAndIncrement("readInt8", 2);
+        return this.doAndIncrement("readInt8", 1);
     }
 
     readInt16BE() {
@@ -36,7 +37,7 @@ export class BufferReader {
     }
 
     readUInt8() {
-        return this.doAndIncrement("readUInt8", 2);
+        return this.doAndIncrement("readUInt8", 1);
     }
 
     readUInt16BE() {
@@ -53,6 +54,42 @@ export class BufferReader {
 
     readUInt32LE() {
         return this.doAndIncrement("readUInt32LE", 4);
+    }
+
+    readDoubleBE() {
+        return this.doAndIncrement("readDoubleBE", 8);
+    }
+
+    readDoubleLE() {
+        return this.doAndIncrement("readDoubleLE", 8);
+    }
+
+    readFloatBE() {
+        return this.doAndIncrement("readFloatBE", 8);
+    }
+
+    readFloatLE() {
+        return this.doAndIncrement("readFloatLE", 8);
+    }
+
+    readInt64LE() {
+        return JSBI.add(
+            JSBI.leftShift(
+                JSBI.BigInt(this.readInt32LE()),
+                JSBI.BigInt(32)
+            ),
+            JSBI.BigInt(this.readInt32LE())
+        );
+    }
+
+    readUInt64LE() {
+        return JSBI.add(
+            JSBI.leftShift(
+                JSBI.BigInt(this.readUInt32LE()),
+                JSBI.BigInt(32)
+            ),
+            JSBI.BigInt(this.readUInt32LE())
+        );
     }
 
     readString(encoding: string, length: number) {

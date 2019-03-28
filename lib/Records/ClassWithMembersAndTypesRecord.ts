@@ -1,5 +1,5 @@
 import { RecordTypeEnumeration, RecordType } from "../Enumerations/RecordTypeEnumeration";
-import { INT32 } from "../PrimitiveTypes/INT32";
+import { Int32Primitive } from "../PrimitiveTypes/Int32Primitive";
 import { BufferReader } from "../BufferReader";
 import { ClassInfo } from "../DataStructures/ClassInfo";
 import { MemberTypeInfo } from "../DataStructures/MemberTypeInfo";
@@ -10,14 +10,14 @@ export class ClassWithMembersAndTypesRecord {
     constructor(
         public ClassInfo: ClassInfo,
         public MemberTypeInfo: MemberTypeInfo,
-        public LibraryId: INT32
+        public LibraryId: Int32Primitive
     ) { };
 
     static read(buffer: BufferReader) {
 
         const classInfo = ClassInfo.read(buffer);
         const memberTypeInfo = MemberTypeInfo.read(buffer, classInfo.MemberCount.Value);
-        const libraryId = INT32.read(buffer);
+        const libraryId = Int32Primitive.read(buffer);
         
         return new ClassWithMembersAndTypesRecord(classInfo, memberTypeInfo, libraryId);
     }

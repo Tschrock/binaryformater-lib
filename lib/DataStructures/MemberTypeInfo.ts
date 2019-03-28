@@ -1,6 +1,6 @@
 import { BinaryTypeEnumeration, BinaryType } from "../Enumerations/BinaryTypeEnumeration";
 import { PrimitiveTypeEnumeration } from "../Enumerations/PrimitiveTypeEnumeration";
-import { LengthPrefixedString } from "./LengthPrefixedString";
+import { LengthPrefixedString } from "../PrimitiveTypes/LengthPrefixedString";
 import { BufferReader } from "../BufferReader";
 import { Sequence } from "./Sequence";
 import { ClassTypeInfo } from "./ClassTypeInfo";
