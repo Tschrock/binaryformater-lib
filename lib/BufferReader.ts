@@ -7,72 +7,72 @@ export class BufferReader {
 
     constructor(
         public readonly Buffer: Buffer,
-        public CurrentIndex: number = 0
-    ) {};
+        public CurrentIndex: number = 0,
+    ) { }
 
-    private doAndIncrement(func: keyof(BufferFiltered), inc: number) {
-        var val = this.Buffer[func](this.CurrentIndex);
+    private doAndIncrement(func: keyof (BufferFiltered), inc: number) {
+        const val = this.Buffer[func](this.CurrentIndex);
         this.CurrentIndex += inc;
         return val;
     }
 
-    readInt8() {
+    public readInt8() {
         return this.doAndIncrement("readInt8", 1);
     }
 
-    readInt16BE() {
+    public readInt16BE() {
         return this.doAndIncrement("readInt16BE", 2);
     }
 
-    readInt16LE() {
+    public readInt16LE() {
         return this.doAndIncrement("readInt16LE", 2);
     }
 
-    readInt32BE() {
+    public readInt32BE() {
         return this.doAndIncrement("readInt32BE", 4);
     }
 
-    readInt32LE() {
+    public readInt32LE() {
         return this.doAndIncrement("readInt32LE", 4);
     }
 
-    readUInt8() {
+    public readUInt8() {
         return this.doAndIncrement("readUInt8", 1);
     }
 
-    readUInt16BE() {
+    public readUInt16BE() {
         return this.doAndIncrement("readUInt16BE", 2);
     }
 
-    readUInt16LE() {
+    public readUInt16LE() {
         return this.doAndIncrement("readUInt16LE", 2);
     }
 
-    readUInt32BE() {
+    public readUInt32BE() {
         return this.doAndIncrement("readUInt32BE", 4);
     }
 
-    readUInt32LE() {
+    public readUInt32LE() {
         return this.doAndIncrement("readUInt32LE", 4);
     }
 
-    readDoubleBE() {
+    public readDoubleBE() {
         return this.doAndIncrement("readDoubleBE", 8);
     }
 
-    readDoubleLE() {
+    public readDoubleLE() {
         return this.doAndIncrement("readDoubleLE", 8);
     }
 
-    readFloatBE() {
+    public readFloatBE() {
         return this.doAndIncrement("readFloatBE", 8);
     }
 
-    readFloatLE() {
+    public readFloatLE() {
         return this.doAndIncrement("readFloatLE", 8);
     }
 
-    readInt64LE() {
+    public readInt64LE() {
         return JSBI.add(
             JSBI.leftShift(
                 JSBI.BigInt(this.readInt32LE()),
@@ -82,7 +82,7 @@ export class BufferReader {
         );
     }
 
-    readUInt64LE() {
+    public readUInt64LE() {
         return JSBI.add(
             JSBI.leftShift(
                 JSBI.BigInt(this.readUInt32LE()),
@@ -92,7 +92,7 @@ export class BufferReader {
         );
     }
 
-    readString(encoding: string, length: number) {
+    public readString(encoding: string, length: number) {
         return this.Buffer.toString(encoding, this.CurrentIndex, this.CurrentIndex += length);
     }
 }

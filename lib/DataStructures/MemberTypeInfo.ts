@@ -1,16 +1,18 @@
-import { BinaryTypeEnumeration, BinaryType } from "../Enumerations/BinaryTypeEnumeration";
-import { PrimitiveTypeEnumeration } from "../Enumerations/PrimitiveTypeEnumeration";
-import { LengthPrefixedString } from "../PrimitiveTypes/LengthPrefixedString";
 import { BufferReader } from "../BufferReader";
-import { Sequence } from "./Sequence";
 import { ClassTypeInfo } from "./ClassTypeInfo";
+import { Sequence } from "./Sequence";
+
+import { BinaryType, BinaryTypeEnumeration } from "../Enumerations/BinaryTypeEnumeration";
+import { PrimitiveTypeEnumeration } from "../Enumerations/PrimitiveTypeEnumeration";
+
+import { LengthPrefixedString } from "../PrimitiveTypes/LengthPrefixedString";
 
 export class MemberTypeInfo {
 
     constructor(
         public BinaryTypeEnums: Sequence<BinaryTypeEnumeration>,
-        public AdditionalInfos: Array<PrimitiveTypeEnumeration | LengthPrefixedString | ClassTypeInfo>
-    ) { };
+        public AdditionalInfos: Array<PrimitiveTypeEnumeration | LengthPrefixedString | ClassTypeInfo>,
+    ) { }
 
     public static read(buffer: BufferReader, memberCount: number): MemberTypeInfo {
         const binaryTypeEnums = Sequence.read(buffer, BinaryTypeEnumeration.read, memberCount);
@@ -23,24 +25,24 @@ export class MemberTypeInfo {
 
                 case BinaryType.Primitive:
                 case BinaryType.PrimitiveArray:
-                
+
                     additionalInfos.push(PrimitiveTypeEnumeration.read(buffer));
                     break;
-                
+
                 case BinaryType.SystemClass:
-                
+
                     additionalInfos.push(LengthPrefixedString.read(buffer));
                     break;
-                
+
                 case BinaryType.Class:
-                
+
                     additionalInfos.push(ClassTypeInfo.read(buffer));
                     break;
 
                 default:
                     break;
             }
-            
+
         }
 
         return new MemberTypeInfo(binaryTypeEnums, additionalInfos);

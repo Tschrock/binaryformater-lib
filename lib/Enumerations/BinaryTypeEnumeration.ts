@@ -8,17 +8,17 @@ export enum BinaryType {
     Class = 4,
     ObjectArray = 5,
     StringArray = 6,
-    PrimitiveArray = 7
+    PrimitiveArray = 7,
 }
 
 export class BinaryTypeEnumeration {
 
     constructor(
-        public Value: BinaryType
-    ) {}
+        public Value: BinaryType,
+    ) { }
 
     public static read(buffer: BufferReader): BinaryTypeEnumeration {
-        return new BinaryTypeEnumeration( buffer.readUInt8() );
+        return new BinaryTypeEnumeration(buffer.readUInt8());
     }
 
 }

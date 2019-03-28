@@ -1,14 +1,15 @@
 import { BufferReader } from "../BufferReader";
-import { Int32Primitive } from "../PrimitiveTypes/Int32Primitive";
 import { Sequence } from "./Sequence";
 import { ValueWithCode } from "./ValueWithCode";
+
+import { Int32Primitive } from "../PrimitiveTypes/Int32Primitive";
 
 export class ArrayOfValueWithCode {
 
     constructor(
         public Length: Int32Primitive,
-        public Values: Sequence<ValueWithCode>
-    ) { };
+        public Values: Sequence<ValueWithCode>,
+    ) { }
 
     public static read(buffer: BufferReader): ArrayOfValueWithCode {
 
@@ -18,4 +19,5 @@ export class ArrayOfValueWithCode {
         return new ArrayOfValueWithCode(length, values);
 
     }
+
 }

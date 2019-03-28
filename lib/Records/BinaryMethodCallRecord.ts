@@ -1,8 +1,10 @@
 import { BufferReader } from "../BufferReader";
-import { RecordTypeEnumeration, RecordType } from "../Enumerations/RecordTypeEnumeration";
+
 import { MessageFlagsEnumeration, MessageFlags } from "../Enumerations/MessageFlagsEnumeration";
-import { StringValueWithCode } from "../DataStructures/StringValueWithCode";
+import { RecordTypeEnumeration, RecordType } from "../Enumerations/RecordTypeEnumeration";
+
 import { ArrayOfValueWithCode } from "../DataStructures/ArrayOfValueWithCode";
+import { StringValueWithCode } from "../DataStructures/StringValueWithCode";
 
 export class BinaryMethodCallRecord {
     public readonly RecordTypeEnum: RecordTypeEnumeration = new RecordTypeEnumeration(RecordType.MethodCall);
@@ -12,8 +14,8 @@ export class BinaryMethodCallRecord {
         public MethodName: StringValueWithCode,
         public TypeName: StringValueWithCode,
         public CallContext: StringValueWithCode | null,
-        public Args: ArrayOfValueWithCode | null
-    ) { };
+        public Args: ArrayOfValueWithCode | null,
+    ) { }
 
     public static read(buffer: BufferReader): BinaryMethodCallRecord {
 
@@ -22,13 +24,13 @@ export class BinaryMethodCallRecord {
         const typeName = StringValueWithCode.read(buffer);
 
         let callContext: StringValueWithCode | null = null;
-        if(messageEnum.Value & MessageFlags.ContextInline) {
+        if (messageEnum.Value & MessageFlags.ContextInline) {
             callContext = StringValueWithCode.read(buffer);
         }
 
         let args: ArrayOfValueWithCode | null = null;
-        if(messageEnum.Value & MessageFlags.ArgsInline) {
-            callContext = StringValueWithCode.read(buffer);
+        if (messageEnum.Value & MessageFlags.ArgsInline) {
+            args = ArrayOfValueWithCode.read(buffer);
         }
 
         return new BinaryMethodCallRecord(messageEnum, methodName, typeName, callContext, args);

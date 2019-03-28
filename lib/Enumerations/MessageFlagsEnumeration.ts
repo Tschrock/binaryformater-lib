@@ -15,17 +15,17 @@ export enum MessageFlags {
     ReturnValueInline = 0x00000800,
     ReturnValueInArray = 0x00001000,
     ExceptionInArray = 0x00002000,
-    GenericMethod = 0x00008000
+    GenericMethod = 0x00008000,
 }
 
 export class MessageFlagsEnumeration {
 
     constructor(
-        public Value: MessageFlags
-    ) {}
+        public Value: MessageFlags,
+    ) { }
 
     public static read(buffer: BufferReader): MessageFlagsEnumeration {
-        return new MessageFlagsEnumeration( buffer.readUInt8() );
+        return new MessageFlagsEnumeration(buffer.readUInt8());
     }
 
 }

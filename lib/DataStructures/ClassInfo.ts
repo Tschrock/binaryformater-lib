@@ -1,7 +1,8 @@
 import { BufferReader } from "../BufferReader";
+import { Sequence } from "./Sequence";
+
 import { Int32Primitive } from "../PrimitiveTypes/Int32Primitive";
 import { LengthPrefixedString } from "../PrimitiveTypes/LengthPrefixedString";
-import { Sequence } from "./Sequence";
 
 export class ClassInfo {
 
@@ -9,7 +10,7 @@ export class ClassInfo {
         public ObjectId: Int32Primitive,
         public Name: LengthPrefixedString,
         public MemberCount: Int32Primitive,
-        public MemberNames: Sequence<LengthPrefixedString>
+        public MemberNames: Sequence<LengthPrefixedString>,
     ) { }
 
     public static read(buffer: BufferReader): ClassInfo {
@@ -22,4 +23,5 @@ export class ClassInfo {
         return new ClassInfo(id, name, memberCount, memberNames);
 
     }
+
 }

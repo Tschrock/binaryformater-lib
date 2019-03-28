@@ -3,23 +3,24 @@ import { BufferReader } from "../BufferReader";
 import { BooleanPrimitive } from "../PrimitiveTypes/BooleanPrimitive";
 import { BytePrimitive } from "../PrimitiveTypes/BytePrimitive";
 import { CharPrimitive } from "../PrimitiveTypes/CharPrimitive";
+import { DateTimePrimitive } from "../PrimitiveTypes/DateTimePrimitive";
 import { DecimalPrimitive } from "../PrimitiveTypes/DecimalPrimitive";
 import { DoublePrimitive } from "../PrimitiveTypes/DoublePrimitive";
 import { Int16Primitive } from "../PrimitiveTypes/Int16Primitive";
 import { Int32Primitive } from "../PrimitiveTypes/Int32Primitive";
 import { Int64Primitive } from "../PrimitiveTypes/Int64Primitive";
+import { LengthPrefixedString } from "../PrimitiveTypes/LengthPrefixedString";
+import { NullPrimitive } from "../PrimitiveTypes/NullPrimitive";
 import { SBytePrimitive } from "../PrimitiveTypes/SBytePrimitive";
 import { SinglePrimitive } from "../PrimitiveTypes/SinglePrimitive";
 import { TimeSpanPrimitive } from "../PrimitiveTypes/TimeSpanPrimitive";
-import { DateTimePrimitive } from "../PrimitiveTypes/DateTimePrimitive";
 import { UInt16Primitive } from "../PrimitiveTypes/UInt16Primitive";
 import { UInt32Primitive } from "../PrimitiveTypes/UInt32Primitive";
 import { UInt64Primitive } from "../PrimitiveTypes/UInt64Primitive";
-import { NullPrimitive } from "../PrimitiveTypes/NullPrimitive";
-import { LengthPrefixedString } from "../PrimitiveTypes/LengthPrefixedString";
 
-
-export type IPrimitiveType = BooleanPrimitive | BytePrimitive | CharPrimitive | DecimalPrimitive | DoublePrimitive | Int16Primitive | Int32Primitive | Int64Primitive | SBytePrimitive | SinglePrimitive | TimeSpanPrimitive | DateTimePrimitive | UInt16Primitive | UInt32Primitive | UInt64Primitive | NullPrimitive | LengthPrefixedString;
+export type IPrimitiveType = BooleanPrimitive | BytePrimitive | CharPrimitive | DecimalPrimitive | DoublePrimitive
+    | Int16Primitive | Int32Primitive | Int64Primitive | SBytePrimitive | SinglePrimitive | TimeSpanPrimitive
+    | DateTimePrimitive | UInt16Primitive | UInt32Primitive | UInt64Primitive | NullPrimitive | LengthPrefixedString;
 
 export enum PrimitiveType {
     Boolean = 1,
@@ -38,21 +39,21 @@ export enum PrimitiveType {
     UInt32 = 15,
     UInt64 = 16,
     Null = 17,
-    String = 18
+    String = 18,
 }
 
 export class PrimitiveTypeEnumeration {
 
     constructor(
-        public Value: PrimitiveType
-    ) {}
+        public Value: PrimitiveType,
+    ) { }
 
     public static read(buffer: BufferReader): PrimitiveTypeEnumeration {
-        return new PrimitiveTypeEnumeration( buffer.readUInt8() );
+        return new PrimitiveTypeEnumeration(buffer.readUInt8());
     }
 
     public static readPrimitiveForType(buffer: BufferReader, primitiveType: PrimitiveType) {
-        switch(primitiveType) {
+        switch (primitiveType) {
             case PrimitiveType.Boolean: return BooleanPrimitive.read(buffer);
             case PrimitiveType.Byte: return BytePrimitive.read(buffer);
             case PrimitiveType.Char: return CharPrimitive.read(buffer);

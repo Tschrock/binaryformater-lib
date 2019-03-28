@@ -6,12 +6,13 @@ export class StringValueWithCode {
     public readonly PrimitiveTypeEnum: PrimitiveTypeEnumeration = new PrimitiveTypeEnumeration(PrimitiveType.String);
 
     constructor(
-        public Value: LengthPrefixedString
-    ) { };
+        public Value: LengthPrefixedString,
+    ) { }
 
     public static read(buffer: BufferReader): StringValueWithCode {
 
         return new StringValueWithCode(LengthPrefixedString.read(buffer));
 
     }
+
 }

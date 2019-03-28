@@ -3,12 +3,12 @@ import { BufferReader } from "../BufferReader";
 export class Sequence<T> {
 
     constructor(
-        public Values: T[]
-    ) { };
+        public Values: T[],
+    ) { }
 
     public static read<T>(buffer: BufferReader, valueReader: (buffer: BufferReader) => T, count: number): Sequence<T> {
 
-        let values: T[] = [];
+        const values: T[] = [];
         for (let i = 0; i < count; ++i) {
             values.push(valueReader(buffer));
         }
@@ -16,4 +16,5 @@ export class Sequence<T> {
         return new Sequence(values);
 
     }
+
 }

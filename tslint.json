@@ -1,0 +1,28 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "ordered-imports": [
+            true,
+            {
+                "import-sources-order": "case-insensitive",
+                "named-imports-order": "any"
+            }
+        ],
+        "member-ordering": false,
+        "no-bitwise": false,
+        "one-line": false,
+        "max-line-length": [
+            true,
+            {
+                "limit": 240,
+                "ignore-pattern": "//|Error\\("
+            }
+        ],
+        "curly": [true, "ignore-same-line"]
+    },
+    "rulesDirectory": []
+}

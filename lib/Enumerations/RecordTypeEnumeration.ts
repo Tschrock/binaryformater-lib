@@ -20,17 +20,17 @@ export enum RecordType {
     ArraySingleObject = 16,
     ArraySingleString = 17,
     MethodCall = 21,
-    MethodReturn = 22
+    MethodReturn = 22,
 }
 
 export class RecordTypeEnumeration {
 
     constructor(
-        public Value: RecordType
-    ) {}
+        public Value: RecordType,
+    ) { }
 
     public static read(buffer: BufferReader): RecordTypeEnumeration {
-        return new RecordTypeEnumeration( buffer.readUInt8() );
+        return new RecordTypeEnumeration(buffer.readUInt8());
     }
 
 }

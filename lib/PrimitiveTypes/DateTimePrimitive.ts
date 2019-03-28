@@ -1,18 +1,19 @@
+import JSBI from "jsbi";
+
 import { BufferReader } from "../BufferReader";
-import JSBI from 'jsbi';
 
 export enum TimeZoneKind {
     NONE = 0,
     UTC = 1,
-    LOCAL = 2
+    LOCAL = 2,
 }
 
 export class DateTimePrimitive {
 
     constructor(
         public Ticks: JSBI,
-        public Kind: TimeZoneKind
-    ) { };
+        public Kind: TimeZoneKind,
+    ) { }
 
     public static read(buffer: BufferReader): DateTimePrimitive {
 
@@ -20,8 +21,8 @@ export class DateTimePrimitive {
 
         return new DateTimePrimitive(
             JSBI.signedRightShift(fullValue, JSBI.BigInt(2)),
-            JSBI.toNumber(JSBI.bitwiseAnd(fullValue, JSBI.BigInt(0b11)))
+            JSBI.toNumber(JSBI.bitwiseAnd(fullValue, JSBI.BigInt(0b11))),
         );
     }
-    
+
 }

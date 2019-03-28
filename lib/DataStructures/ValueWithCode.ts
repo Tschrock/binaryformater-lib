@@ -5,8 +5,8 @@ export class ValueWithCode {
 
     constructor(
         public PrimitiveTypeEnum: PrimitiveTypeEnumeration,
-        public Value: IPrimitiveType
-    ) { };
+        public Value: IPrimitiveType,
+    ) { }
 
     public static read(buffer: BufferReader): ValueWithCode {
 
@@ -16,4 +16,5 @@ export class ValueWithCode {
         return new ValueWithCode(primitiveTypeEnum, value);
 
     }
+
 }
