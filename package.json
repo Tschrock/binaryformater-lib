@@ -1,16 +1,39 @@
 {
-  "name": "binaryformater-lib",
-  "version": "0.0.1",
+  "name": "binaryformater",
+  "version": "0.0.1-wip",
   "description": "A library for reading and writing binary data created with .NET's `BinaryFormatter`.",
+  "keywords": [
+    "binary",
+    "binaryformatter",
+    "MS-NRBF",
+    "serialize",
+    "deserialize"
+  ],
+  "homepage": "https://github.com/Tschrock/binaryformater-lib",
+  "bugs": {
+    "url": "https://github.com/Tschrock/binaryformater-lib/issues"
+  },
+  "license": "MPL-2.0",
+  "author": {
+    "name": "Tschrock",
+    "email": "tschrock123@gmail.com"
+  },
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tschrock/binaryformater-lib.git"
+  },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Tschrock <tschrock123@gmail.com>",
-  "license": "MPL-2.0",
   "devDependencies": {
     "@types/node": "^11.12.0",
     "ts-node": "^8.0.3",
     "typescript": "^3.3.4000"
+  },
+  "engines": {
+    "node": "8.2.1"
+  },
   }
 }
