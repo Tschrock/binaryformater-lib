@@ -13,7 +13,7 @@ export class BinaryLibraryRecord {
         public LibraryName: LengthPrefixedString,
     ) { }
 
-    public static read(buffer: BufferReader) {
+    public static read(buffer: BufferReader): BinaryLibraryRecord {
         return new BinaryLibraryRecord(
             Int32Primitive.read(buffer),
             LengthPrefixedString.read(buffer),

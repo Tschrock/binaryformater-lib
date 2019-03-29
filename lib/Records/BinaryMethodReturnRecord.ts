@@ -1,11 +1,11 @@
 import { BufferReader } from "../BufferReader";
 
-import { MessageFlagsEnumeration, MessageFlags } from "../Enumerations/MessageFlagsEnumeration";
-import { RecordTypeEnumeration, RecordType } from "../Enumerations/RecordTypeEnumeration";
-
 import { ArrayOfValueWithCode } from "../DataStructures/ArrayOfValueWithCode";
 import { StringValueWithCode } from "../DataStructures/StringValueWithCode";
 import { ValueWithCode } from "../DataStructures/ValueWithCode";
+
+import { MessageFlagsEnumeration, MessageFlags } from "../Enumerations/MessageFlagsEnumeration";
+import { RecordTypeEnumeration, RecordType } from "../Enumerations/RecordTypeEnumeration";
 
 export class BinaryMethodReturnRecord {
     public readonly RecordTypeEnum: RecordTypeEnumeration = new RecordTypeEnumeration(RecordType.MethodReturn);

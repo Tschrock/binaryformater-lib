@@ -15,11 +15,13 @@ export class SerializationHeaderRecord {
     ) { }
 
     public static read(buffer: BufferReader) {
+
         return new SerializationHeaderRecord(
             Int32Primitive.read(buffer),
             Int32Primitive.read(buffer),
             Int32Primitive.read(buffer),
             Int32Primitive.read(buffer),
         );
+
     }
 }

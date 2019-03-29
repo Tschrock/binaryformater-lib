@@ -13,7 +13,7 @@ export class BinaryObjectStringRecord {
         public Value: LengthPrefixedString,
     ) { }
 
-    public static read(buffer: BufferReader) {
+    public static read(buffer: BufferReader): BinaryObjectStringRecord {
 
         return new BinaryObjectStringRecord(
             Int32Primitive.read(buffer),
