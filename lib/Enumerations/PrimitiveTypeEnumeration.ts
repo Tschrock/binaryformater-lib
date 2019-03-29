@@ -71,6 +71,7 @@ export class PrimitiveTypeEnumeration {
             case PrimitiveType.UInt64: return UInt64Primitive.read(buffer);
             case PrimitiveType.Null: return NullPrimitive.read(buffer);
             case PrimitiveType.String: return LengthPrefixedString.read(buffer);
+            default: throw Error(`Error reading primitive: Primitive Type ${primitiveType} does not exist or is not supported (at 0x${(buffer.CurrentIndex - 1).toString(16)}).`);
         }
     }
 }

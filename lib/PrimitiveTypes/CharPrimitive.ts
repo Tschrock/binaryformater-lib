@@ -24,7 +24,7 @@ export class CharPrimitive {
                 const secondByte = buffer.readUInt8();
 
                 if ((secondByte & 0b10000000) && (~secondByte & 0b010000000)) { // Second byte isn't a continuation byte
-                    throw new Error(`Error reading character at ${(buffer.CurrentIndex - 2).toString(16)}: Byte 2 (${secondByte.toString(16)}: ${secondByte.toString(2)}) is not a valid UTF-8 continuation byte.`);
+                    throw new Error(`Error reading character at 0x${(buffer.CurrentIndex - 2).toString(16)}: Byte 2 (0x${secondByte.toString(16)}: ${secondByte.toString(2)}) is not a valid UTF-8 continuation byte.`);
                 }
 
                 valueCharCode = (valueCharCode << 8) & secondByte;
@@ -34,7 +34,7 @@ export class CharPrimitive {
                     const thirdByte = buffer.readUInt8();
 
                     if ((thirdByte & 0b10000000) && (~thirdByte & 0b010000000)) { // Third byte isn't a continuation byte
-                        throw new Error(`Error reading character at ${(buffer.CurrentIndex - 3).toString(16)}: Byte 3 (${thirdByte.toString(16)}: ${thirdByte.toString(2)}) is not a valid UTF-8 continuation byte.`);
+                        throw new Error(`Error reading character at 0x${(buffer.CurrentIndex - 3).toString(16)}: Byte 3 (0x${thirdByte.toString(16)}: ${thirdByte.toString(2)}) is not a valid UTF-8 continuation byte.`);
                     }
 
                     valueCharCode = (valueCharCode << 8) & thirdByte;
@@ -44,13 +44,13 @@ export class CharPrimitive {
                         const fourthByte = buffer.readUInt8();
 
                         if ((fourthByte & 0b10000000) && (~fourthByte & 0b010000000)) { // Fourth byte isn't a continuation byte
-                            throw new Error(`Error reading character at ${(buffer.CurrentIndex - 3).toString(16)}: Byte 4 (${fourthByte.toString(16)}: ${fourthByte.toString(2)}) is not a valid UTF-8 continuation byte.`);
+                            throw new Error(`Error reading character at 0x${(buffer.CurrentIndex - 3).toString(16)}: Byte 4 (0x${fourthByte.toString(16)}: ${fourthByte.toString(2)}) is not a valid UTF-8 continuation byte.`);
                         }
 
                         valueCharCode = (valueCharCode << 8) & fourthByte;
 
                         if (firstByte & 0b00001000) { // Fifth bit is set, that's invalid
-                            throw new Error(`Error reading character at ${(buffer.CurrentIndex - 4).toString(16)}: Byte 1 (${firstByte.toString(16)}: ${firstByte.toString(2)}) is not a valid UTF-8 start byte.`);
+                            throw new Error(`Error reading character at 0x${(buffer.CurrentIndex - 4).toString(16)}: Byte 1 (0x${firstByte.toString(16)}: ${firstByte.toString(2)}) is not a valid UTF-8 start byte.`);
                         }
 
                     }
@@ -59,7 +59,7 @@ export class CharPrimitive {
 
             }
             else { // Oops, that's a continuation byte, not a start byte
-                throw new Error(`Error reading character at ${(buffer.CurrentIndex - 1).toString(16)}: ${firstByte.toString(16)} is not a valid UTF-8 start byte (It looks like it's a continuation byte?).`);
+                throw new Error(`Error reading character at 0x${(buffer.CurrentIndex - 1).toString(16)}: (0x${firstByte.toString(16)}: ${firstByte.toString(2)}) is not a valid UTF-8 start byte (It looks like it's a continuation byte?).`);
             }
 
         }

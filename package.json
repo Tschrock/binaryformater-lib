@@ -24,6 +24,7 @@
     "url": "https://github.com/Tschrock/binaryformater-lib.git"
   },
   "scripts": {
+    "start": "npm run build && node test.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
